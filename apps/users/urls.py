@@ -1,10 +1,12 @@
 from django.urls import path,include,re_path
 from .views import UserinfoView,UploadImageView,UpdatePwdView,SendEmailCodeView
-from .views import UpdateEmailView,MyCourseView,MyFavOrgView,MyFavTeacherView,MyFavCourseView,MyMessageView
+from .views import UpdateEmailView, LoginView
 
 app_name = 'users'
 
 urlpatterns = [
+
+    #path('login/', LoginView.as_view(), name='login'),
     #用户信息
     path("info/", UserinfoView.as_view(),name='user_info'),
     #用户图像上传

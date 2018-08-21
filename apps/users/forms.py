@@ -3,7 +3,11 @@
 
 from django import forms
 from captcha.fields import CaptchaField
-from .models import UserProfile
+#from .models import UserProfile
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class LoginForm(forms.Form):
@@ -19,7 +23,7 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(required=True)
     password = forms.CharField(required=True,min_length=5)
     # 验证码
-    captcha = CaptchaField(error_messages={'invalid':'验证码错误'})
+    #captcha = CaptchaField(error_messages={'invalid':'验证码错误'})
 
 class ForgetPwdForm(forms.Form):
     '''忘记密码'''
@@ -36,11 +40,11 @@ class ModifyPwdForm(forms.Form):
 class UploadImageForm(forms.ModelForm):
     '''用户更改图像'''
     class Meta:
-        model = UserProfile
+        model = User
         fields = ['image']
 
 class UserInfoForm(forms.ModelForm):
     '''个人中心信息修改'''
     class Meta:
-        model = UserProfile
+        model = User
         fields = ['nick_name','gender','birthday','adress','mobile']

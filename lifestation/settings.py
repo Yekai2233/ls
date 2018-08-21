@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'lifestation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'life_station',
+        'NAME': 'qwer',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': '192.168.99.100',
@@ -138,3 +138,10 @@ STATICFILES_DIRS = (
 # 设置上传文件的路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')   # 指定根目录
+
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "1184463199@qq.com"
+EMAIL_HOST_PASSWORD = "ibsynckzvivgfigg"
+EMAIL_USE_TLS= True
+EMAIL_FROM = "1184463199@qq.com"

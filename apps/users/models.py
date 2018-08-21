@@ -1,10 +1,11 @@
-#-*- coding:UTF-8 -*-
+# -*- coding:UTF-8 -*-
 # users/models.py
 
 from datetime import datetime
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 
 class UserProfile(AbstractUser):
 
@@ -19,6 +20,7 @@ class UserProfile(AbstractUser):
     adress = models.CharField('地址',max_length=100,default='')
     mobile = models.CharField('手机号',max_length=11,null=True,blank=True)
     image = models.ImageField(upload_to='image/%Y%m',default='image/default.png',max_length=100)
+    email = models.EmailField('邮箱', max_length=50, null=False, blank=False)
 
     class Meta:
         verbose_name = '用户信息'

@@ -1,82 +1,77 @@
 {% load static %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>Wopop</title>
-<link href="{% static '/style_log.css' %}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{% static 'login_files/style_log.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static '/style_log.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static '/style_log.css' %}">
-
-</head>
-
-<body class="login" mycollectionplug="bind">
-<div class="login_m">
-<div class="login_logo"><img src="./Wopop_files/logo.png" width="196" height="46"></div>
-<div class="login_boder">
-
-<div class="login_padding" id="login_model">
-
-  <h2>USERNAME</h2>
-  <label>
-    <input type="text" id="username" class="txt_input txt_input2" onfocus="if (value ==&#39;Your name&#39;){value =&#39;&#39;}" onblur="if (value ==&#39;&#39;){value=&#39;Your name&#39;}" value="Your name">
-  </label>
-  <h2>PASSWORD</h2>
-  <label>
-    <input type="password" name="textfield2" id="userpwd" class="txt_input" onfocus="if (value ==&#39;******&#39;){value =&#39;&#39;}" onblur="if (value ==&#39;&#39;){value=&#39;******&#39;}" value="******">
-  </label>
- 
- 
-
- 
-  <p class="forgot"><a id="iforget" href="javascript:void(0);">Forgot your password?</a></p>
-  <div class="rem_sub">
-  <div class="rem_sub_l">
-  <input type="checkbox" name="checkbox" id="save_me">
-   <label for="checkbox">Remember me</label>
-   </div>
-    <label>
-      <input type="submit" class="sub_button" name="button" id="button" value="SIGN-IN" style="opacity: 0.7;">
-    </label>
-  </div>
+<!DOCTYPE html>
+<html>
+	
+<head>
+		<meta charset="utf-8">
+		<title>登录界面</title>
+		<link rel="stylesheet" href="{% static 'login/css/reset.css'%}" />
+		<link rel="stylesheet" href="{% static 'login/css/common.css'%}" />
+		<link rel="stylesheet" href="{% static 'login/css/font-awesome.min.css'%}" />
+	</head>
+	<body>
+		<div class="wrap login_wrap">
+			<div class="content">
+				<div class="logo"></div>
+				<div class="login_box">	
+					
+					<div class="login_form">
+						<div class="login_title">
+							登录
+						</div>
+						<form action="/login/" method="post">
+							
+							<div class="form_text_ipt">
+								<input name="username" type="text" placeholder="邮箱">
+							</div>
+							<div class="ececk_warning"><span>邮箱不能为空</span></div>
+							<div class="form_text_ipt">
+								<input name="password" type="password" placeholder="密码">
+							</div>
+							<div class="ececk_warning"><span>密码不能为空</span></div>
+							<div class="form_check_ipt">
+								<div class="left check_left">
+									<label><input name="" type="checkbox"> 下次自动登录</label>
+								</div>
+								<div class="right check_right">
+									<a href="#">忘记密码</a>
+								</div>
+							</div>
+							<div class="form_btn">
+								<button type="submit" >登录</button>
+							</div>
+                            <div class="error btns login-form-tips" id="jsLoginTips">
+                                {% for key,error in login_form.errors.items %}
+                                    {{ error }}
+                                {% endfor %}
+                                {{ msg }}
+                            </div>
+                            <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                                {% csrf_token %}
+							<div class="form_reg_btn">
+								<span>还没有帐号？</span><a href="{% url 'register' %}">马上注册</a>
+							</div>
+						</form>
+						<div class="other_login">
+							<div class="left other_left">
+								<span>其它登录方式</span>
+							</div>
+							<div class="right other_right">
+                                <span>这些</span>
+								<a href="#"><i class="fa fa-qq fa-2x"></i></a>
+								<a href="#"><i class="fa fa-weixin fa-2x"></i></a>
+								<a href="#"><i class="fa fa-weibo fa-2x"></i></a>
+                                <span>通通不支持</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="{% static 'login/js/jquery.min.js'%}" ></script>
+		<script type="text/javascript" src="{% static 'login/js/common.js'%}" ></script>
+		<div style="text-align:center;">
+<p>更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
 </div>
-
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-
-<div id="forget_model" class="login_padding" style="display:none">
-<br>
-
-   <h1>Forgot password</h1>
-   <br>
-   <div class="forget_model_h2">(Please enter your registered email below and the system will automatically reset users’ password and send it to user’s registered email address.)</div>
-    <label>
-    <input type="text" id="usrmail" class="txt_input txt_input2">
-   </label>
-
- 
-  <div class="rem_sub">
-  <div class="rem_sub_l">
-   </div>
-    <label>
-     <input type="submit" class="sub_buttons" name="button" id="Retrievenow" value="Retrieve now" style="opacity: 0.7;">
-     　　　
-     <input type="submit" class="sub_button" name="button" id="denglou" value="Return" style="opacity: 0.7;">　　
-    
-    </label>
-  </div>
-</div>
-
-
-
-
-
-
-<!--login_padding  Sign up end-->
-</div><!--login_boder end-->
-</div><!--login_m end-->
- <br> <br>
-<p align="center"> More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-
-
-
-</body></html>
+	</body>
+</html>

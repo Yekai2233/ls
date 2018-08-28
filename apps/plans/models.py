@@ -14,7 +14,7 @@ class Plans(models.Model):
     future_status = models.CharField(max_length=2000, default='a lot of money')
     mtime = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     ctime = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
-
+    count = models.IntegerField(verbose_name='倒计时', default=0)
     author = models.ForeignKey(User, related_name='goal', on_delete=models.CASCADE)
 
     class Meta:
@@ -43,7 +43,9 @@ class Process(models.Model):
     start_time = models.DateTimeField(verbose_name='开始日期')
     end_time = models.DateTimeField(verbose_name='结束日期')
 
-    content = models.CharField(max_length=2000)
+    content = models.CharField(verbose_name='方法', max_length=2000)
+    is_delete = models.BooleanField(verbose_name='是否已删除', default=False)
+    is_complete = models.BooleanField(verbose_name='是否已实现', default=False)
 
 
 class ProcessScore(models.Model):

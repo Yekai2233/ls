@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path, re_path, include
 import xadmin
-from users.views import LoginView, RegisterView, IndexView, ActiveUserView
+from users.views import LoginView, RegisterView, IndexView, ActiveUserView, LogoutView
 
 
 urlpatterns = [
@@ -23,11 +23,12 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
-
+    path('logout/', LogoutView.as_view(), name='logout'),
 
     re_path('active/(?P<active_code>.*)/', ActiveUserView.as_view(),name='user_active'),
-
+    path("users/", include('users.urls', namespace="users")),
     # plans url
     path("plans/", include('plans.urls', namespace="plans")),
+
 
 ]

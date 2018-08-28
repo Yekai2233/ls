@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Single - Future Imperfect by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{% static 'process/assets/css/main.css'%}" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body class="single">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{% url 'index' %}">Future Imperfect</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="{% url 'plans:create_plan' %}">new</a></li>
+								<li><a href="#">Ipsum</a></li>
+								<li><a href="#">Feugiat</a></li>
+								<li><a href="#">Tempus</a></li>
+								<li><a href="{% url 'logout' %}">LogOut</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section>
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>Lorem ipsum</h3>
+											<p>Feugiat tempus veroeros dolor</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Dolor sit amet</h3>
+											<p>Sed vitae justo condimentum</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Feugiat veroeros</h3>
+											<p>Phasellus sed ultricies mi congue</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Etiam sed consequat</h3>
+											<p>Porta lectus amet ultricies</p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions vertical">
+									<li><a href="#" class="button big fit">Log In</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+                        {% if pk %}
+                            <div class="other_login">
+                                <button  type="submit" >COMPLETE</button>
+                                <button style="float: right" type="submit" >DELETE</button>
+							</div>
+                            <form action="{% url 'plans:create_process' pk %}" method="post">
+
+							<div class="search">
+                                <textarea name="process_name" style="width:100%;height:50px;margin-top: 10px"></textarea>
+							</div>
+
+							<div class="form_text_ipt">
+								<textarea name="content" id="now_status" style="width:100%;height:100px;margin-top: 10px"></textarea>
+							</div>
+
+                            <div class="form_text_ipt">
+								<br>
+							</div>
+
+                            <div class="form_text_ipt">
+								<ul>
+								<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始：<input name="start_time" id="start" type="date" placeholder="开始">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束：<input name="end_time" id="future_status" type="date" placeholder="结束"></li>
+							    </ul>
+							</div>
+
+
+{#							<div class="form_text_ipt">#}
+{#								<input name="code" type="text" placeholder="验证码">#}
+{#							</div>#}
+{#							<div class="ececk_warning"><span>验证码不能为空</span></div>#}
+
+							<div class="other_login">
+                                <button  type="submit" >UNDO</button>
+                                <button style="float: right" type="submit" >START</button>
+							</div>
+
+
+                            <div class="error btns login-form-tips" id="jsLoginTips">
+                                {% for key,error in register_form.errors.items %}
+                                    {{ error }}
+                                {% endfor %}
+                                {{ msg }}
+                            </div>
+                            <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                                {% csrf_token %}
+
+
+						</form>
+                        {% else %}
+
+                        <form action="{% url 'plans:create_plan' %}" method="post">
+
+							<div class="search">
+								<input name="goal" type="text" id="goal" placeholder="目标">
+							</div>
+
+							<div class="form_text_ipt">
+								<textarea name="now_status" id="now_status" style="width:100%;height:100px;margin-top: 10px" placeholder="现状"></textarea>
+							</div>
+
+							<div class="form_text_ipt">
+                                <textarea name="f" id="future_status" style="width:100%;height:100px;margin-top: 10px" placeholder="未来"></textarea>
+							</div>
+
+                            <div class="form_text_ipt">
+								<br>
+							</div>
+
+                            <div class="form_text_ipt">
+								<ul>
+								<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始：<input name="start_date" id="start" type="date" placeholder="开始">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束：<input name="end_date" id="future_status" type="date" placeholder="结束"></li>
+							    </ul>
+							</div>
+
+
+{#							<div class="form_text_ipt">#}
+{#								<input name="code" type="text" placeholder="验证码">#}
+{#							</div>#}
+{#							<div class="ececk_warning"><span>验证码不能为空</span></div>#}
+
+							<div class="other_login">
+
+                                <button  type="submit" >START</button>
+
+							</div>
+
+                            <div class="error btns login-form-tips" id="jsLoginTips">
+                                {% for key,error in register_form.errors.items %}
+                                    {{ error }}
+                                {% endfor %}
+                                {{ msg }}
+                            </div>
+                            <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                                {% csrf_token %}
+
+
+						</form>
+                    {% endif %}
+                </div>
+				<!-- Footer -->
+					<section id="footer">
+{#						<ul class="icons">#}
+{#							<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>#}
+{#							<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>#}
+{#							<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>#}
+{#							<li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>#}
+{#							<li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>#}
+{#						</ul>#}
+						<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'process/assets/js/jquery.min.js'%}"></script>
+			<script src="{% static 'process/assets/js/skel.min.js'%}"></script>
+			<script src="{% static 'process/assets/js/util.js'%}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static 'process/assets/js/main.js'%}"></script>
+
+            </div>>
+    </body>
+</html>

@@ -1,7 +1,7 @@
 #-*- coding:UTF-8 -*-
 # users/views.py
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse,HttpResponseRedirect
 
@@ -10,15 +10,10 @@ from apps.users.models import EmailVerifyRecord
 from django.db.models import Q
 from django.views.generic.base import View
 from .forms import LoginForm,RegisterForm,ForgetPwdForm,ModifyPwdForm
-# from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.hashers import make_password
 from utils.email_send import send_register_eamil
 from utils.mixin_utils import LoginRequiredMixin
 from .forms import UploadImageForm,UserInfoForm
-# from operation.models import UserCourse,UserFavorite,UserMessage
-# from organization.models import CourseOrg,Teacher
-# from course.models import Course
-# from .models import Banner
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from apps.plans.models import Plans
@@ -42,11 +37,11 @@ class CustomBackend(ModelBackend):
             return None
 
 
-class IndexView(View):
-    '''首页'''
-    def get(self, request):
+class IndexView(LoginRequiredMixin, View):
 
-        all_plans = Plans.objects.all().order_by('mtime')
+    def get(self, request):
+        user = request.user
+        all_plans = Plans.objects.filter(author_id=user.id).order_by('-mtime')
 
         return render(request, 'index.html', {
             'all_plans': all_plans
@@ -74,7 +69,7 @@ class LoginView(View):
                 if user.is_active:
                     # 只有注册激活才能登录
                     login(request, user)
-                    return HttpResponseRedirect(reverse('index'))
+                    return redirect(reverse('index'))
                 else:
                     return render(request, 'login.html', {'msg': '用户名或密码错误', 'login_form': login_form})
             # 只有当用户名或密码不存在时，才返回错误信息到前端
@@ -111,7 +106,7 @@ class LogoutView(View):
     '''用户登出'''
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('login'))
 
 
 # 注册

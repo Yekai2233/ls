@@ -6,6 +6,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+{% if request.user.is_authenticated %}
 	<head>
 		<title>Future Imperfect by HTML5 UP</title>
 		<meta charset="utf-8" />
@@ -22,14 +23,14 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="#">Future Imperfect</a></h1>
+						<h1><a href="{% url 'index' %}">Future Imperfect</a></h1>
 						<nav class="links">
 							<ul>
-								<li><a href="#">Lorem</a></li>
+								<li><a href="{% url 'plans:create_plan' %}">new</a></li>
 								<li><a href="#">Ipsum</a></li>
 								<li><a href="#">Feugiat</a></li>
 								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
+								<li><a href="{% url 'logout' %}">LogOut</a></li>
 							</ul>
 						</nav>
 						<nav class="main">
@@ -108,21 +109,25 @@
 {#										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>#}
 									</div>
 									<div class="meta">
-										<time class="published" datetime="{{ plan.ctime }}">{{ plan.mtime }}</time>
+{#										<time class="published" datetime="{{ plan.ctime }}">{{ plan.mtime }}</time>#}
+                                        <div>
+                                            <a class="published"></a>
+
+                                        </div>
 										<a href="#" class="author"><span class="name">{{ plan.author }}</span><img src="{% static 'index/images/avatar.jpg'%}" alt="" /></a>
 									</div>
 								</header>
 {#								<a href="#" class="image featured"><img src="{% static 'index/images/pic01.jpg'%}" alt="" /></a>#}
-								<p>{{ plan.now_status }}</p>
-                                <p>{{ plan.future_status }}</p>
+								<p>现在：{{ plan.now_status }}</p>
+                                <p>未来：{{ plan.future_status }}</p>
 								<footer>
 									<ul class="actions">
-										<li><a href="#" class="button big">Continue Reading</a></li>
+										<li><a href="{% url 'plans:plan_process' plan.id %}" class="button big">Achieve your goal</a></li>
 									</ul>
 									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon fa-heart">28</a></li>
-										<li><a href="#" class="icon fa-comment">128</a></li>
+{#										<li><a href="#">General</a></li>#}
+{#										<li><a href="#" class="icon fa-heart">28</a></li>#}
+										<li><a href="{% url 'plans:edit_plan' plan.id %}" class="icon fa-comment">edit</a></li>
 									</ul>
 								</footer>
 							</article>
@@ -444,10 +449,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						-->
 
 						<!-- Pagination -->
-							<ul class="actions pagination">
-								<li><a href="" class="disabled button big previous">Previous Page</a></li>
-								<li><a href="#" class="button big next">Next Page</a></li>
-							</ul>
+{#							<ul class="actions pagination">#}
+{#								<li><a href="" class="disabled button big previous">Previous Page</a></li>#}
+{#								<li><a href="#" class="button big next">Next Page</a></li>#}
+{#							</ul>#}
 
 					</div>
                     {% endif %}
@@ -510,56 +515,56 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</div>
 							</section>
 
-						<!-- Posts List -->
-							<section>
-								<ul class="posts">
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Lorem ipsum fermentum ut nisl vitae</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="{% static 'index/images/pic08.jpg'%}" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Convallis maximus nisl mattis nunc id lorem</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="{% static 'index/images/pic09.jpg'%}" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Euismod amet placerat vivamus porttitor</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="{% static 'index/images/pic10.jpg'%}" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Magna enim accumsan tortor cursus ultricies</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="{% static 'index/images/pic11.jpg'%}" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">Congue ullam corper lorem ipsum dolor</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="{% static 'index/images/pic12.jpg'%}" alt="" /></a>
-										</article>
-									</li>
-								</ul>
-							</section>
+{#						<!-- Posts List -->#}
+{#							<section>#}
+{#								<ul class="posts">#}
+{#									<li>#}
+{#										<article>#}
+{#											<header>#}
+{#												<h3><a href="#">Lorem ipsum fermentum ut nisl vitae</a></h3>#}
+{#												<time class="published" datetime="2015-10-20">October 20, 2015</time>#}
+{#											</header>#}
+{#											<a href="#" class="image"><img src="{% static 'index/images/pic08.jpg'%}" alt="" /></a>#}
+{#										</article>#}
+{#									</li>#}
+{#									<li>#}
+{#										<article>#}
+{#											<header>#}
+{#												<h3><a href="#">Convallis maximus nisl mattis nunc id lorem</a></h3>#}
+{#												<time class="published" datetime="2015-10-15">October 15, 2015</time>#}
+{#											</header>#}
+{#											<a href="#" class="image"><img src="{% static 'index/images/pic09.jpg'%}" alt="" /></a>#}
+{#										</article>#}
+{#									</li>#}
+{#									<li>#}
+{#										<article>#}
+{#											<header>#}
+{#												<h3><a href="#">Euismod amet placerat vivamus porttitor</a></h3>#}
+{#												<time class="published" datetime="2015-10-10">October 10, 2015</time>#}
+{#											</header>#}
+{#											<a href="#" class="image"><img src="{% static 'index/images/pic10.jpg'%}" alt="" /></a>#}
+{#										</article>#}
+{#									</li>#}
+{#									<li>#}
+{#										<article>#}
+{#											<header>#}
+{#												<h3><a href="#">Magna enim accumsan tortor cursus ultricies</a></h3>#}
+{#												<time class="published" datetime="2015-10-08">October 8, 2015</time>#}
+{#											</header>#}
+{#											<a href="#" class="image"><img src="{% static 'index/images/pic11.jpg'%}" alt="" /></a>#}
+{#										</article>#}
+{#									</li>#}
+{#									<li>#}
+{#										<article>#}
+{#											<header>#}
+{#												<h3><a href="#">Congue ullam corper lorem ipsum dolor</a></h3>#}
+{#												<time class="published" datetime="2015-10-06">October 7, 2015</time>#}
+{#											</header>#}
+{#											<a href="#" class="image"><img src="{% static 'index/images/pic12.jpg'%}" alt="" /></a>#}
+{#										</article>#}
+{#									</li>#}
+{#								</ul>#}
+{#							</section>#}
 
 						<!-- About -->
 							<section class="blurb">
@@ -594,4 +599,81 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="{% static 'index/assets/js/main.js'%}"></script>
 
 	</body>
+    {% else %}
+    <head>
+		<meta charset="utf-8">
+		<title>登录界面</title>
+		<link rel="stylesheet" href="{% static 'login/css/reset.css'%}" />
+		<link rel="stylesheet" href="{% static 'login/css/common.css'%}" />
+		<link rel="stylesheet" href="{% static 'login/css/font-awesome.min.css'%}" />
+	</head>
+	<body>
+		<div class="wrap login_wrap">
+			<div class="content">
+				<div class="logo"></div>
+				<div class="login_box">
+
+					<div class="login_form">
+						<div class="login_title">
+							登录
+						</div>
+						<form action="/login/" method="post">
+
+							<div class="form_text_ipt">
+								<input name="username" type="text" placeholder="邮箱">
+							</div>
+							<div class="ececk_warning"><span>邮箱不能为空</span></div>
+							<div class="form_text_ipt">
+								<input name="password" type="password" placeholder="密码">
+							</div>
+							<div class="ececk_warning"><span>密码不能为空</span></div>
+							<div class="form_check_ipt">
+								<div class="left check_left">
+									<label><input name="" type="checkbox"> 下次自动登录</label>
+								</div>
+								<div class="right check_right">
+									<a href="#">忘记密码</a>
+								</div>
+							</div>
+							<div class="form_btn">
+								<button type="submit" >登录</button>
+							</div>
+                            <div class="error btns login-form-tips" id="jsLoginTips">
+                                {% for key,error in login_form.errors.items %}
+                                    {{ error }}
+                                {% endfor %}
+                                {{ msg }}
+                            </div>
+                            <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                                {% csrf_token %}
+							<div class="form_reg_btn">
+								<span>还没有帐号？</span><a href="{% url 'register' %}">马上注册</a>
+							</div>
+						</form>
+						<div class="other_login">
+							<div class="left other_left">
+								<span>其它登录方式</span>
+							</div>
+							<div class="right other_right">
+                                <span>这些</span>
+								<a href="#"><i class="fa fa-qq fa-2x"></i></a>
+								<a href="#"><i class="fa fa-weixin fa-2x"></i></a>
+								<a href="#"><i class="fa fa-weibo fa-2x"></i></a>
+                                <span>通通不支持</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="{% static 'login/js/jquery.min.js'%}" ></script>
+		<script type="text/javascript" src="{% static 'login/js/common.js'%}" ></script>
+		<div style="text-align:center;">
+<p>更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+</div>
+	</body>
+
+
+
+{% endif %}
 </html>

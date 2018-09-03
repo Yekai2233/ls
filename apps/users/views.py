@@ -41,7 +41,7 @@ class IndexView(LoginRequiredMixin, View):
 
     def get(self, request):
         user = request.user
-        all_plans = Plans.objects.filter(author_id=user.id).order_by('-mtime')
+        all_plans = Plans.objects.filter(author_id=user.id).filter(is_delete=0).order_by('-mtime')
 
         return render(request, 'index.html', {
             'all_plans': all_plans

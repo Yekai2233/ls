@@ -101,7 +101,7 @@
                         {% if plan %}
                             <div class="other_login">
                                 <button  type="submit" >COMPLETE</button>
-                                <button style="float: right" type="submit" >DELETE</button>
+                                <button style="float: right" type="submit" onclick="window.location.href='{% url 'plans:create_process' plan.id %}'" >DELETE</button>
 							</div>
                             <form action="{% url 'plans:edit_plan' plan.id %}" method="post">
 

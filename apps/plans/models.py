@@ -16,6 +16,8 @@ class Plans(models.Model):
     ctime = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     count = models.IntegerField(verbose_name='倒计时', default=0)
     author = models.ForeignKey(User, related_name='goal', on_delete=models.CASCADE)
+    is_delete = models.BooleanField(verbose_name='是否已删除', default=False)
+    is_complete = models.BooleanField(verbose_name='是否已实现', default=False)
 
     class Meta:
         ordering = ['-mtime', '-ctime']

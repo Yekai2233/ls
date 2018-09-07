@@ -30,5 +30,6 @@ urlpatterns = [
     # plans url
     path("plans/", include('plans.urls', namespace="plans")),
 
+	path("task/",include('task.urls',namespace="task")),
 
 ]

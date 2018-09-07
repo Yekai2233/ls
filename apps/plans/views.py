@@ -107,10 +107,13 @@ class DeletePlanView(View):
 
         except Exception as e:
 
-            return render
+            return redirect('index')
 
 # class EditProcessView(View):
 #     def get(self, request, pk):
 #         plan = Plans.objects.get(id=int(pk))
 #         print(plan.id)
 #         return render(request, 'create_plan.html', {'plan': plan})
+
+
+

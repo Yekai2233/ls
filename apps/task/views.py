@@ -6,12 +6,22 @@ from task.models import Task
 
 class MakeTaskView(View):
 
-    def post(self, request):
-        try:
-            task = Task()
+	def get(self, request):
+		return redirect('index')
 
-            return redirect('index')
+	def post(self, request):
+		try:
+			task = Task()
 
-        except Exception as e:
+			return redirect('index')
 
-            return render
+		except Exception as e:
+			print(1111)
+
+
+
+class ListTaskView(View):
+	def get(self, request):
+		task_list = Task.objects.all()
+		return render(request, "task.html",
+                {'task_list': task_list})

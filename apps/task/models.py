@@ -15,3 +15,6 @@ class Task(models.Model):
 	count_time = models.IntegerField('统计次数', default=0)
 
 	count = models.IntegerField('统计使用次数', default=0)
+	status = models.BooleanField('状态', default=False)
+
+	search_url = models.CharField('搜索引擎', max_length=50, default='https://www.baidu.com')

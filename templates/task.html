@@ -14,23 +14,26 @@
 
 
 						<!-- Post -->
-                        {% for process in process_list %}
+                        {% for task in task_list %}
 							<article class="post">
+                            <form action="/login/" method="post">
 								<header>
 									<div class="title">
-										<h2><a href="{% url 'plans:process' plan.id %}">{{ process.process_name }}</a></h2>
+										<h2><a href="#">{{ task.name }}</a></h2>
 {#										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>#}
 									</div>
 									<div class="meta">
-										<time class="published" contenteditable="true" datetime="{{ process.start_time }}">{{ process.start_time }}</time>
-                                        <time class="published" contenteditable="true" datetime="{{ process.end_time }}">{{ process.end_time }}</time>
+{#										<time class="published" contenteditable="true" datetime="{{ process.start_time }}">{{ process.start_time }}</time>#}
+{#                                        <time class="published" contenteditable="true" datetime="{{ process.end_time }}">{{ process.end_time }}</time>#}
 {#										<a href="#" class="author"><span class="name">{{ plan.author }}</span><img src="{% static 'process/images/avatar.jpg'%}" alt="" /></a>#}
 									</div>
 								</header>
 {#								<a href="#" class="image featured"><img src="{% static 'process/images/pic01.jpg'%}" alt="" /></a>#}
 
-                                <p contenteditable="true">{{ process.content }}</p>
-								<footer>
+                                <p contenteditable="true">{{ task.key_word }}</p>
+                                <p contenteditable="true">{{ task.target_web }}</p>
+                                <p contenteditable="true">{{ task.run_time }}</p>
+
 
 									<ul class="stats">
 
@@ -41,10 +44,10 @@
                                     <ul class="stats" style="margin-left:50%">
 
 
-                                        <li><button type="submit" onclick="window.location.href='{% url 'plans:edit_plan' plan.id %}'" >EDIT</button></li>
+                                        <li><button type="submit"  >保存</button></li>
 									</ul>
 
-								</footer>
+								</form>
 							</article>
                         {% endfor %}
 

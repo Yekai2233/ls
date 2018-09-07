@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'plans.apps.PlansConfig',
+    'task.apps.TaskConfig',
     'xadmin',
     'captcha',
     'crispy_forms',

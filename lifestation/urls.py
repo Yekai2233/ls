@@ -16,8 +16,11 @@ Including another URLconf
 from django.urls import path, re_path, include
 import xadmin
 from users.views import LoginView, RegisterView, IndexView, ActiveUserView, LogoutView
+from lifestation import corn
+from .settings import DEBUG
 
-
+if not DEBUG:
+    corn.main()
 urlpatterns = [
     path('admin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),

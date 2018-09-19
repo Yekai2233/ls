@@ -11,6 +11,7 @@ class Task(models.Model):
 
 	key_word = models.CharField('关键词', max_length=20, default='')
 	target_web = models.CharField('目标网址', max_length=100, default='')
+	run_day = models.IntegerField('持续天数', default=0)
 	run_time = models.IntegerField('目标次数', default=0)
 	count_time = models.IntegerField('统计次数', default=0)
 

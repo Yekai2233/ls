@@ -1,7 +1,9 @@
 # -*-coding:utf-8-*-
 from selenium import webdriver
 import time
-from task.models import Task
+#from task.models import Task
+from random_useragent import get_useragent, get_fake_keyword
+import random
 
 
 class Options(object):
@@ -42,15 +44,26 @@ def get_xpath(driver, sql, count):
 
 def selenium_task(kw, target, url):
 	options = webdriver.ChromeOptions()
-	options.add_argument('lang=zh_CN.UTF-8')
 	prefs = {"profile.managed_default_content_settings.images": 2}
 	options.add_experimental_option("prefs", prefs)
+	args = get_useragent()
+	for arg in args:
+		options.add_argument(arg)
 
 	driver = webdriver.Chrome(chrome_options=options)
 	sql = "//a[@class='c-showurl' and contains(text(),'%s')] | //a[@target='_blank']/span[contains(text(),'%s')]" % (
 		target, target)
 
 	driver.get(url)
+	times = random.randint(1, 4)
+	for i in times:
+		fake = get_fake_keyword()
+		driver.find_element_by_id("kw").clear()
+		time.sleep(3)
+		driver.find_element_by_id("kw").send_keys(fake)
+		time.sleep(3)
+		driver.find_element_by_id("su").click()
+		time.sleep(5)
 
 	driver.find_element_by_id("kw").clear()
 	time.sleep(1)
@@ -65,7 +78,7 @@ def selenium_task(kw, target, url):
 
 
 def start_selenium():
-	task_list = Task.objects.filter(status=False).filter(run_time__gt=0)
+	task_list = Task.objects.filter(status=False).filter(run_day__gt=0)
 	for task in task_list:
 
 		kw = task.key_word
@@ -78,3 +91,5 @@ def start_selenium():
 			task.save()
 
 
+if __name__ == '__main__':
+	selenium_task('净水器代理批发', 'www.ouces.com', 'https://www.baidu.com')

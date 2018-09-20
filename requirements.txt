@@ -1,4 +1,4 @@
-Django==1.11.7
+Django==2.0.2
 django-crispy-forms==1.7.0
 django-formtools==2.1
 django-import-export==0.6.1

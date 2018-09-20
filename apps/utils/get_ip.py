@@ -6,12 +6,12 @@ import random
 lock = threading.Lock()
 
 
-def get_ip_response(url):
+def get_ip_response():
 	proxies_list = []
 	headers = {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
 		}
-	response = requests.get(url=url, headers=headers)
+	response = requests.get(url='http://www.xicidaili.com/', headers=headers)
 	selector = etree.HTML(response.text)
 	tr = selector.xpath('//tr')[:80]
 	L = []
@@ -33,7 +33,7 @@ def check_ip(tr, proxies_list, headers):
 	td = td.xpath('./td/text()')
 	try:
 		proxies = {td[4]: td[0] + ':' + td[1]}
-		requests.get(url='http://hotels.ctrip.com/hotel/hangzhou17#ctm_ref=ctr_hp_sb_lst', headers=headers, proxies=proxies, timeout=5)
+		requests.get(url='http://www.baidu.com', headers=headers, proxies=proxies, timeout=5)
 	except:
 		print('connect failed')
 	else:

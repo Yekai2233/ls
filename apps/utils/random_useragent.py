@@ -42,10 +42,10 @@ def get_useragent():
 	agent = random.choice(head_user_agent)
 	referer = random.choice(referer_list)
 	headers = [
-				"User-Agent = %s" % agent,
-				'Accept-Language = zh-CN,zh;q=0.8',
-				'Origin = http://hotels.ctrip.com',
-				'Referer = %s' % referer
+				'user-agent="%s"' % agent,
+				"accept-language='zh-CN,zh;q=0.8'",
+				"origin='http://hotels.ctrip.com'",
+				"referer='%s'" % referer
 	]
 
 	return headers
@@ -56,3 +56,5 @@ def get_fake_keyword():
 	应', '怪物猎人', '刺激战场', '乌克兰军队是罪魁祸首', '李典傻逼']
 
 	word = random.choice(words)
+
+	return word

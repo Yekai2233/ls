@@ -11,7 +11,7 @@ from django.db.models import Q
 from django.views.generic.base import View
 from .forms import LoginForm,RegisterForm,ForgetPwdForm,ModifyPwdForm
 from django.contrib.auth.hashers import make_password
-from utils.email_send import send_register_eamil
+from apps.utils.email_send import send_register_eamil
 from utils.mixin_utils import LoginRequiredMixin
 from .forms import UploadImageForm,UserInfoForm
 from django.urls import reverse

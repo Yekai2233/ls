@@ -2,8 +2,8 @@
 from selenium import webdriver
 import time
 #from task.models import Task
-from random_useragent import get_useragent, get_fake_keyword
-from get_ip import get_ip_response
+from apps.utils.random_useragent import get_useragent, get_fake_keyword
+from apps.utils.get_ip import get_ip_response
 import random
 
 

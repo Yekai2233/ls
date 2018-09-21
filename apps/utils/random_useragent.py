@@ -55,6 +55,8 @@ def get_fake_keyword():
 	words = ['牙刷', '热门文章', '感恩原作者', 'Alice将她的公钥', '因数分解', '针对议题发表看法', '吃鸡下架', '哄抬房租', '腾讯回\
 	应', '怪物猎人', '刺激战场', '乌克兰军队是罪魁祸首', '李典傻逼']
 
-	word = random.choice(words)
+	word = []
+	for i in range(4, 7):
+		word += random.choice(words)
 
 	return word

@@ -38,7 +38,6 @@ def get_useragent():
 						'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E; LBBROWSER)',
 						'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 UBrowser/4.0.3214.0 Safari/537.36']
 
-
 	agent = random.choice(head_user_agent)
 	referer = random.choice(referer_list)
 	headers = [
@@ -56,7 +55,6 @@ def get_fake_keyword():
 	应', '怪物猎人', '刺激战场', '乌克兰军队是罪魁祸首', '李典傻逼']
 
 	word = []
-	for i in range(4, 7):
-		word += random.choice(words)
-
+	for i in range(1):
+		word.append(random.choice(words))
 	return word
